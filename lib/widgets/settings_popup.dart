@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sproutly/utils/app_style.dart';
 import 'package:sproutly/widgets/pixel_image.dart';
+import 'package:provider/provider.dart';
+import '../models/settings_state.dart';
 
 class SettingsPopup extends StatefulWidget {
   const SettingsPopup({super.key});
@@ -16,6 +18,8 @@ class _SettingsPopupState extends State<SettingsPopup> {
 
   @override
   Widget build(BuildContext context) {
+    final settings = context.watch<SettingsState>();
+
     return Material(
       color: Colors.transparent,
 
@@ -48,9 +52,23 @@ class _SettingsPopupState extends State<SettingsPopup> {
                       children: [
                         const SizedBox(height: 40),
 
-                        _buildToggle("Sound", false, (_) {}),
-                        _buildToggle("Vibration", false, (_) {}),
-                        _buildToggle("Notifications", false, (_) {}),
+                        _buildToggle(
+                          "Sound",
+                          settings.soundEnabled,
+                          (_) => settings.toggleSound(),
+                        ),
+
+                        _buildToggle(
+                          "Vibration",
+                          settings.vibrationEnabled,
+                          (_) => settings.toggleVibration(),
+                        ),
+
+                        _buildToggle(
+                          "Notifications",
+                          settings.notificationsEnabled,
+                          (_) => settings.toggleNotifications(),
+                        ),
                       ],
                     ),
                   ],

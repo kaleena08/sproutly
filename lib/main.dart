@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sproutly/services/timer_service.dart';
 import 'models/garden_state.dart';
 import 'utils/pixel_perfect_wrapper.dart';
+import 'models/settings_state.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +17,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => GardenState()),
         ChangeNotifierProvider(create: (_) => TimerService()),
+        ChangeNotifierProvider(create: (_) => SettingsState()),
       ],
       child: const SproutlyApp(),
     ),
