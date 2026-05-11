@@ -7,7 +7,7 @@ class TimerService extends ChangeNotifier {
 
   final Duration focusDuration = const Duration(seconds: 10); // 25 mins
   final Duration shortBreak = const Duration(seconds: 5); // 5 mins
-  final Duration longBreak = const Duration(seconds: 8); // 15 mins
+  // final Duration longBreak = const Duration(seconds: 8); => not implemented
 
   Timer? _timer;
   int _remainingSeconds = 0;
@@ -53,7 +53,7 @@ class TimerService extends ChangeNotifier {
 
   Duration get currentDuration {
     if (isFocus) return focusDuration;
-    return shortBreak; // long break handled by garden state if needed
+    return shortBreak;
   }
 
   void _handleComplete() {
